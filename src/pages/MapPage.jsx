@@ -7,7 +7,9 @@ import Loader from "../components/Loader";
 import Container from "../components/Container";
 import Title from "../components/Title";
 
-const StyledMap = styled.div``;
+const StyledMap = styled.div`
+  padding-bottom: 32px;
+`;
 
 const Wrapper = styled.div`
   background-color: #fff;
