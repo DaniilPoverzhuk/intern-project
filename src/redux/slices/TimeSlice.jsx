@@ -11,8 +11,6 @@ const TimeSlice = createSlice({
     setTimeRx: (state, action) => {
       const { hours, minutes, seconds } = action?.payload;
 
-      console.log(seconds);
-
       state.time = {
         hours: hours.toString().padStart(2, "0"),
         minutes: minutes.toString().padStart(2, "0"),

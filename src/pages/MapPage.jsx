@@ -7,16 +7,14 @@ import Loader from "../components/Loader";
 import Container from "../components/Container";
 import Title from "../components/Title";
 
-const StyledMap = styled.div`
-  color: red;
-`;
+const StyledMap = styled.div``;
 
 const Wrapper = styled.div`
   background-color: #fff;
   padding: 18px 32px;
 `;
 
-const MapPage = React.memo(() => {
+export default React.memo(function MapPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [geoLocation, setGeoLocation] = useState([]);
 
@@ -49,8 +47,7 @@ const MapPage = React.memo(() => {
           <YMaps>
             <Map
               width={"max-width: 100%"}
-              // Карта никак не хотел принимать 100% высоту
-              height={"calc(100vh - 42px - 36px - 108px - 18px - 32px)"}
+              height={"67vh"}
               defaultState={{ center: geoLocation, zoom: 10 }}
             >
               <Placemark geometry={geoLocation} />
@@ -61,5 +58,3 @@ const MapPage = React.memo(() => {
     </StyledMap>
   );
 });
-
-export default MapPage;

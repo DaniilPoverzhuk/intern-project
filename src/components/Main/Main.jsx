@@ -48,6 +48,10 @@ const Title = styled.p`
 
   font-size: 14px;
   line-height: 16px;
+
+  @media (max-width: 342px) {
+    font-size: 12px;
+  }
 `;
 
 const Name = styled.span`
@@ -74,6 +78,10 @@ const Comment = styled.div`
     background: #d3d8de;
     width: 2px;
     height: 100%;
+  }
+
+  @media (max-width: 342px) {
+    font-size: 12px;
   }
 `;
 

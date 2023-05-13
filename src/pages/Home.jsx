@@ -12,9 +12,13 @@ const Wrapper = styled.div`
   justify-content: space-between;
 
   gap: 32px;
+
+  @media (max-width: 750px) {
+    flex-direction: column;
+  }
 `;
 
-const Home = React.memo(function Home() {
+export default React.memo(function Home() {
   return (
     <StyledHome>
       <Container>
@@ -26,5 +30,3 @@ const Home = React.memo(function Home() {
     </StyledHome>
   );
 });
-
-export default Home;

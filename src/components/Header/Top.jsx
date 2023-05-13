@@ -2,14 +2,17 @@ import React from "react";
 import styled from "styled-components";
 
 import Arrow from "../../assets/Header/Top/arrow-back.svg";
-import Statistics from "../../assets/Header/Top/statistics.svg";
-import Invoice from "../../assets/Header/Top/invoice.svg";
-import Schedule from "../../assets/Header/Top/schedule.svg";
+
+import { NavigationItems } from "../../assets/constants";
 
 import Container from "../Container";
 
 const StyledTop = styled.div`
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 370px) {
+    display: none;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -22,6 +25,10 @@ const Page = styled.div`
   display: flex;
   align-items: center;
   gap: 5px;
+
+  @media (max-width: 530px) {
+    padding: 20px 0;
+  }
 `;
 
 const ArrowBack = styled.img`
@@ -39,6 +46,10 @@ const Navigation = styled.nav`
   display: flex;
   align-items: center;
   gap: 30px;
+
+  @media (max-width: 530px) {
+    display: none;
+  }
 `;
 
 const NavigationItem = styled.li`
@@ -63,12 +74,6 @@ const Label = styled.p`
   line-height: 16px;
   color: #505050;
 `;
-
-const NavigationItems = [
-  { img: Statistics, label: "Statistics" },
-  { img: Invoice, label: "Invoices" },
-  { img: Schedule, label: "Schedule" },
-];
 
 const Top = () => {
   return (

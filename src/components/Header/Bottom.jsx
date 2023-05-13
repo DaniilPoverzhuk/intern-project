@@ -4,42 +4,80 @@ import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 
 import Activity from "../../assets/Header/Bottom/activity.svg";
-import Map from "../../assets/Header/Bottom/map.svg";
-import Time from "../../assets/Header/Bottom/time.svg";
-import Notes from "../../assets/Header/Bottom/notes.svg";
-import Friends from "../../assets/Header/Bottom/friends.svg";
-import Photos from "../../assets/Header/Bottom/photos.svg";
-import Settings from "../../assets/Header/Bottom/settings.svg";
-import ArrowDown from "../../assets/Header/Bottom/arrow-down.svg";
+import Arrow from "../../assets/Header/Top/arrow-back.svg";
+
+import { NavLeft, NavRight } from "../../assets/constants";
 
 import Container from "../Container";
-
-const NavLeft = [
-  { img: Activity, label: "Activity" },
-  { img: Map, label: "Map" },
-  { img: Time, label: "Time" },
-];
-
-const NavRight = [
-  { img: Notes, label: "Notes" },
-  { img: Friends, label: "Friends" },
-  { img: Photos, label: "Photos" },
-  { img: Settings, label: ArrowDown },
-];
+import Menu from "./Menu";
 
 const StyledBottom = styled.div`
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
+  position: relative;
 `;
 
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  @media (max-width: 370px) {
+    justify-content: space-between;
+  }
 `;
 
-const Navigation = styled.nav`
+const Page = styled.div`
+  display: none;
+  align-items: center;
+  gap: 5px;
+
+  @media (max-width: 530px) {
+    padding: 20px 0;
+  }
+
+  @media (max-width: 370px) {
+    display: flex;
+  }
+`;
+
+const ArrowBack = styled.img`
+  margin-top: -4px;
+`;
+
+const Text = styled.p`
+  font-weight: ${(props) => props.font};
+  font-size: 18px;
+  line-height: 21px;
+  color: #505050;
+`;
+
+const NavigationLeft = styled.nav`
   display: flex;
   align-items: center;
+
+  @media (max-width: 370px) {
+    display: none;
+  }
+`;
+
+const NavigationRight = styled.nav`
+  display: flex;
+  align-items: center;
+
+  @media (max-width: 730px) {
+    display: none;
+  }
+`;
+
+const Burger = styled.img`
+  display: none;
+  cursor: pointer;
+
+  padding: 10px 0px;
+
+  @media (max-width: 730px) {
+    display: block;
+  }
 `;
 
 const NavigationItem = styled(Link)`
@@ -71,11 +109,18 @@ const Image = styled.img``;
 
 const Bottom = () => {
   const [activeLink, setActiveLink] = useState(0);
+  const [isVisibleMenu, setIsVisibleMenu] = useState(false);
+
+  const showMenu = (event) => {
+    event.stopPropagation();
+    setIsVisibleMenu(true);
+  };
+
   return (
     <StyledBottom>
       <Container>
         <Wrapper>
-          <Navigation>
+          <NavigationLeft>
             {NavLeft.map((item, idx) => (
               <NavigationItem
                 active={activeLink === idx}
@@ -87,8 +132,8 @@ const Bottom = () => {
                 {item.label}
               </NavigationItem>
             ))}
-          </Navigation>
-          <Navigation>
+          </NavigationLeft>
+          <NavigationRight>
             {NavRight.map((item, idx) => (
               <NavigationItem key={item.label}>
                 <Image src={item.img} />
@@ -99,7 +144,19 @@ const Bottom = () => {
                 )}
               </NavigationItem>
             ))}
-          </Navigation>
+          </NavigationRight>
+          <Page>
+            <ArrowBack src={Arrow} />
+            <Text font={500}>User Pages</Text> - <Text>Profile</Text>
+          </Page>
+          <Burger src={Activity} onClick={(event) => showMenu(event)} />
+          {isVisibleMenu && (
+            <Menu
+              setIsVisibleMenu={setIsVisibleMenu}
+              setActiveLink={setActiveLink}
+              activeLink={activeLink}
+            />
+          )}
         </Wrapper>
       </Container>
     </StyledBottom>

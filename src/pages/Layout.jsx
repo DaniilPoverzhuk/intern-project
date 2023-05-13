@@ -6,12 +6,16 @@ import styled from "styled-components";
 import Header from "../components/Header/Header";
 
 const Wrapper = styled.div`
-  padding-top: 32px;
   background-color: #f1f1f1;
-  min-height: calc(100vh - 108px);
+  min-height: 100vh;
+  padding-top: 140px;
+
+  @media (max-width: 370px) {
+    padding-top: 93px;
+  }
 `;
 
-export default React.memo(function Layout() {
+export default function Layout() {
   return (
     <>
       <Header />
@@ -20,4 +24,4 @@ export default React.memo(function Layout() {
       </Wrapper>
     </>
   );
-});
+}
